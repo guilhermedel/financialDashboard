@@ -10,7 +10,7 @@
 
 ## 📊 Dashboard
 - [ ] Criar **página da Dashboard** protegida pelo login
-- [ ] Implementar **sidebar exclusiva** com opções de **Home** e **Logout**
+- [X] Implementar **sidebar exclusiva** com opções de **Home** e **Logout**
 - [ ] Criar **cards de resumo**:
   - [ ] Receita total
   - [ ] Despesas totais
