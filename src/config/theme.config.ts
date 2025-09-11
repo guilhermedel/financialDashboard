@@ -31,10 +31,7 @@ export const theme = createTheme({
       fontWeight: 600,
       color: '#1E293B',
     },
-    h6: {
-      fontWeight: 500,
-      color: '#475569',
-    },
+    
   },
   components: {
     MuiCard: {
