@@ -1,111 +1,126 @@
-'use client'
-import styled from 'styled-components';
+import { Box, styled } from "@mui/material";
+import Link from "next/link";
 
-// Variáveis do tema
-const colors = {
-  sidebarGradient: 'linear-gradient(180deg, #8B5CF6 0%, #7C3AED 50%, #6D28D9 100%)',
-  sidebarWidth: '250px',
-  borderRadius: '12px',
-  cardShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
-  white: '#ffffff',
-  whiteTransparent: 'rgba(255, 255, 255, 0.8)',
-  whiteHover: 'rgba(255, 255, 255, 0.1)',
-  whiteBorder: 'rgba(255, 255, 255, 0.2)',
-};
-
-const spacing = {
-  small: '0.5rem',
-  medium: '1rem',
-  large: '1.5rem',
-  xlarge: '2rem',
-};
-
-export const SidebarContainer = styled.aside`
-  width: ${colors.sidebarWidth};
-  height: 100vh;
-  background: ${colors.sidebarGradient};
-  color: ${colors.white};
-  padding: ${spacing.medium};
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
+// Sidebar desktop (original)
+export const SidebarContainer = styled(Box)(({ theme }) => ({
+  width: 250,
+  backgroundColor: theme.palette.primary.main,
+  color: 'white',
+  height: '100vh',
+  display: 'flex',
+  flexDirection: 'column',
+  position: 'relative',
+  zIndex: 1000,
   
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
+  // Esconder em mobile
+  '@media (max-width: 768px)': {
+    display: 'none',
+  },
+}));
+
+// Sidebar mobile colapsável
+export const CollapsedSidebar = styled(Box)<{ isOpen: boolean }>(({ theme, isOpen }) => ({
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: 280,
+  height: '100vh',
+  backgroundColor: theme.palette.primary.main,
+  color: 'white',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  zIndex: 1300,
+  transform: isOpen ? 'translateX(0)' : 'translateX(-100%)',
+  transition: 'transform 0.3s ease-in-out',
+  boxShadow: isOpen ? '4px 0 12px rgba(0,0,0,0.15)' : 'none',
   
-  &::-webkit-scrollbar-thumb {
-    background: ${colors.whiteHover};
-    border-radius: 3px;
-  }
-`;
+  // Mostrar apenas em mobile
+  '@media (min-width: 769px)': {
+    display: 'none',
+  },
+}));
 
-export const SidebarHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${spacing.small};
-  margin-bottom: ${spacing.xlarge};
-  padding-bottom: ${spacing.medium};
-  border-bottom: 1px solid ${colors.whiteHover};
-`;
-
-export const SidebarTitle = styled.h2`
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin: 0;
-  color: ${colors.white};
-`;
-
-export const SidebarNav = styled.nav`
-  margin-top: ${spacing.xlarge};
-`;
-
-export const SidebarList = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: ${spacing.small};
-`;
-
-export const SidebarItem = styled.li`
-  margin-bottom: ${spacing.small};
-`;
-
-export const SidebarLink = styled.a<{ $active?: boolean }>`
-  display: flex;
-  align-items: center;
-  gap: ${spacing.small};
-  padding: 0.875rem ${spacing.medium};
-  color: ${props => props.$active ? colors.white : colors.whiteTransparent};
-  text-decoration: none;
-  border-radius: ${colors.borderRadius};
-  font-weight: ${props => props.$active ? '600' : '500'};
-  background-color: ${props => props.$active ? colors.whiteHover : 'transparent'};
-  transition: all 0.2s ease-in-out;
+// Botão do menu mobile
+export const MobileMenuButton = styled(Box)(({ theme }) => ({
+  position: 'fixed',
+  top: 20,
+  left: 20,
+  display: 'none',
   
-  &:hover {
-    background-color: ${colors.whiteHover};
-    color: ${colors.white};
-    transform: translateX(4px);
-  } 
-`;
+  // Mostrar apenas em mobile
+  '@media (max-width: 768px)': {
+    display: 'block',
+  },
+}));
 
-export const SidebarFooter = styled.footer`
-  padding-top: ${spacing.small};
-  border-top: 1px solid ${colors.whiteHover};
-`;
+// Overlay para fechar ao clicar fora
+export const MobileOverlay = styled(Box)(({ theme }) => ({
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100vw',
+  height: '100vh',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  zIndex: 1200,
+  display: 'none',
+  
+  // Mostrar apenas em mobile quando sidebar estiver aberta
+  '@media (max-width: 768px)': {
+    display: 'block',
+  },
+}));
 
-export const MainContent = styled.main`
-  margin-left: ${colors.sidebarWidth};
-  padding: ${spacing.xlarge};
-  background-color: #F8FAFC;
-  min-height: 100vh;
-`;
+export const SidebarHeader = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(3),
+  textAlign: 'center',
+  borderBottom: '1px solid rgba(255,255,255,0.2)',
+  
+  '& span': {
+    display: 'block',
+    fontSize: '0.875rem',
+    opacity: 0.8,
+    marginTop: theme.spacing(1),
+  },
+}));
 
-// Exportar as variáveis para usar em outros componentes se necessário
-export { colors, spacing };
+export const SidebarTitle = styled('h2')(({ theme }) => ({
+  margin: 0,
+  fontSize: '1.5rem',
+  fontWeight: 600,
+}));
+
+export const SidebarNav = styled('nav')(({ theme }) => ({
+  flex: 1,
+  padding: theme.spacing(2, 0),
+}));
+
+export const SidebarList = styled('ul')(({ theme }) => ({
+  listStyle: 'none',
+  padding: 0,
+  margin: 0,
+}));
+
+export const SidebarLink = styled('a')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(2),
+  padding: theme.spacing(1.5, 3),
+  color: 'white',
+  textDecoration: 'none',
+  transition: 'background-color 0.2s ease',
+  cursor: 'pointer',
+  
+  '&:hover': {
+    backgroundColor: 'rgba(255,255,255,0.1)',
+  },
+  
+  '& svg': {
+    fontSize: '1.25rem',
+  },
+}));
+
+export const SidebarFooter = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(2),
+  borderTop: '1px solid rgba(255,255,255,0.2)',
+}));

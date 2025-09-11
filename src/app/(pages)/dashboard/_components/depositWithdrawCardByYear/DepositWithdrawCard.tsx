@@ -60,7 +60,7 @@ export default function DepositWithdrawCard() {
         title="Receitas x Despesas por ano"
         subheader="Evolução da relação entre receitas e despesas no ano selecionado"
       />
-      <CardContent>
+      <CardContent sx={{ padding: 0}}>
         <LoadingContent isLoading={loading}>
           {transactionResponse ? (
             <BarChart

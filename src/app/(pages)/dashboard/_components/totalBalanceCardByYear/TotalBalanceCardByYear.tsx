@@ -29,7 +29,7 @@ export default function TotalBalanceCardByYear() {
         title="Saldo Total por Ano"
         subheader="Evolução do saldo ao longo dos anos"
       />
-      <CardContent>
+      <CardContent sx={{ padding: 0}}>
         <LoadingContent isLoading={loading}>
           {yearlyBalances.length > 0 ? (
             <LineChart
