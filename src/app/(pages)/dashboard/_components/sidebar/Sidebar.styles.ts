@@ -44,6 +44,9 @@ export const SidebarContainer = styled.aside`
 `;
 
 export const SidebarHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${spacing.small};
   margin-bottom: ${spacing.xlarge};
   padding-bottom: ${spacing.medium};
   border-bottom: 1px solid ${colors.whiteHover};

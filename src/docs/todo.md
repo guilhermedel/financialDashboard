@@ -12,34 +12,34 @@
 - [ ] Criar **página da Dashboard** protegida pelo login
 - [X] Implementar **sidebar exclusiva** com opções de **Home** e **Logout**
 - [ ] Criar **cards de resumo**:
-  - [ ] Receita total
-  - [ ] Despesas totais
+  - [X] Receita total
+  - [X] Despesas totais
   - [ ] Transações pendentes
-  - [ ] Saldo total
-- [ ] Criar **gráficos**:
-  - [ ] Gráfico de barras empilhadas (ex.: receitas x despesas por período)
-  - [ ] Gráfico de linhas (ex.: evolução do saldo ao longo do tempo)
+  - [X] Saldo total
+- [X] Criar **gráficos**:
+  - [X] Gráfico de barras empilhadas (ex.: receitas x despesas por período)
+  - [X] Gráfico de linhas (ex.: evolução do saldo ao longo do tempo)
 
 ---
 
 ## 🔍 Filtros Globais e Dinâmicos
-- [ ] Criar componente de **filtros globais**
-  - [ ] Filtro por **datas**
-  - [ ] Filtro por **contas**
-  - [ ] Filtro por **indústrias**
-  - [ ] Filtro por **estado**
-- [ ] Garantir que todos os componentes (cards, gráficos, lista) **atualizem conforme os filtros aplicados**
+- [X] Criar componente de **filtros globais**
+  - [X] Filtro por **datas**
+  - [X] Filtro por **contas**
+  - [X] Filtro por **indústrias**
+  - [X] Filtro por **estado**
+- [X] Garantir que todos os componentes (cards, gráficos, lista) **atualizem conforme os filtros aplicados**
 - [ ] Persistir **valores dos filtros** em `localStorage` ou `sessionStorage`
 
 ---
 
 ## 💾 Dados
-- [ ] Ler dados do arquivo `transactions.json`
-- [ ] Criar parser para:
-  - [ ] Converter `date` de **epoch ms → Date**
-  - [ ] Converter `amount` de string para número com decimais
-- [ ] Garantir que os dados originais **não sejam alterados**
-- [ ] Criar camada de utilitários para manipulação (ex.: cálculo de totais, agrupamentos por período, etc.)
+- [X] Ler dados do arquivo `transactions.json`
+- [X] Criar parser para:
+  - [X] Converter `date` de **epoch ms → Date**
+  - [X] Converter `amount` de string para número com decimais
+- [X] Garantir que os dados originais **não sejam alterados**
+- [X] Criar camada de utilitários para manipulação (ex.: cálculo de totais, agrupamentos por período, etc.)
 
 ---
 

@@ -8,16 +8,25 @@ export type Transaction = {
   state: string;
 }
 
-export type TransactionFilter ={
-    date?: Date;
-    account?: string;
-    industry?: string;
-    state?: string;
+export type TransactionFilter = {
+  date?: Date;
+  account?: string;
+  industry?: string;
+  state?: string;
 }
 
 export type TransactionsInfo = {
-    totalDeposit: number;
-    totalWithdraw: number;
-    totalBalance: number;
-    totalTransactions: number;
+  totalDeposit: number;
+  totalWithdraw: number;
+  totalBalance: number;
+  totalTransactions: number;
+}
+
+export type TransactionsDepositsWithdraw = {
+  monthlyData: {month:string, totalDeposit: number; totalWithdraw: number }[];
+}
+
+export type YearlyBalance = {
+  year: number;
+  totalBalance: number;
 }
